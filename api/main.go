@@ -19,7 +19,13 @@ type User struct {
 	Name string `json:"name"`
 }
 
-func getUsers(w http.ResponseWriter, r *http.Request) {
+func getUsers(w http.ResponseWriter, request *http.Request) {
+
+	if request.Method != "POST" {
+		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+		return
+	}
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode([]User{{
 		ID:   1,

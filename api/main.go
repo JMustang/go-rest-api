@@ -21,7 +21,7 @@ type User struct {
 
 func getUsers(w http.ResponseWriter, request *http.Request) {
 
-	if request.Method != "POST" {
+	if request.Method != "GET" {
 		http.Error(w, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
 		return
 	}
